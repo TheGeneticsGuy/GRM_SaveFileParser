@@ -5,9 +5,11 @@
 # IMPORTS
 import copy
 import re
+import json
 
-imported_Data = {}
-leftPlayersFinal = {}
+
+# Variables
+jsonFileDirectory = 'C:\\Users\\aaron\\OneDrive\\Programming\\GRM_SaveFileParser\\Output\\grm.json'
 finaFormerPlayerData = {}
 finalPlayerData = {}
 
@@ -49,6 +51,7 @@ def ParseAllData():
         for gName , data in finalPlayerData.items():
             print(f'{gName} has {len(data) - 1} members.')
         print()
+        ExportToJson( finalPlayerData )
 
 def ParseGuilds ( data ):
     GuildData = {}
@@ -383,7 +386,10 @@ def ConvertToBool ( text ):
         return True
     else:
         return False
-
+    
+def ExportToJson ( data ):
+    with open(jsonFileDirectory, "w") as json_file:
+        json.dump ( data , json_file , indent = 4) 
 
 def StartProgram():
 
